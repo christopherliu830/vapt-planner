@@ -1,29 +1,64 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { connect } from 'react-redux';
 import { fabric } from 'fabric';
 
-function WallTool({canvas}) {
-  const [point, setPoint] = useState(0);
+function WallTool({canvas, currentTool}) {
+  const [fabricLine, SetLine] = useState(0);
 
   useEffect(() => {
-    canvas.on('mouse:down', handleMouseDown);
-    return () => canvas.off('mouse:down', handleMouseDown);
-  }, [canvas, point])
+    console.log('wall tool init');
+    canvas.selection = false;
+    return () => canvas.selection = true;
+  }, []);
 
-  let handleMouseDown = useCallback(({e, target}) => {
-    if (target) setPoint(null);
-    else if (point) {
-      console.log(point);
-      setPoint(null);
-      canvas.add(new fabric.Line([point.x, point.y, e.layerX, e.layerY], {stroke: 'black'} ));
+  const handleMouseMove = useCallback(({e, target}) => {
+    if (fabricLine) {
+      const pointer = canvas.getPointer(e);
+      fabricLine.set({x2: pointer.x, y2: pointer.y});
+      canvas.renderAll();
+    };
+  }, [canvas, fabricLine]);
+
+  const handleMouseDown = useCallback(({e, target}) => {
+    if (target) {
+      console.log('I\'m clicking');
+      return;
+    }
+    else if (fabricLine) {
+      console.log(fabricLine);
+      SetLine(null);
+      const pointer = canvas.getPointer(e);
+      fabricLine.set({x2: pointer.x, y2: pointer.y, selectable: true});
       canvas.fire('update');
     }
     else {
-      console.log(`Click registered at ${e.layerX}, ${e.layerY}`)
-      setPoint({x: e.layerX, y: e.layerY});
+      const pointer = canvas.getPointer(e);
+      console.log(`Click registered at ${pointer.x}, ${pointer.y}`);
+      const line = new fabric.Line([pointer.x, pointer.y, pointer.x, pointer.y], {stroke: 'black'});
+      line.set('selectable', false);
+      console.log(line.get('selectable'));
+      SetLine(line);
+      canvas.add(line);
     }
-  }, [point, setPoint, canvas] );
+  }, [fabricLine, SetLine, canvas] );
 
-  return <React.Fragment/>
+  useEffect(() => {
+    canvas.on('mouse:down', handleMouseDown);
+    canvas.on('mouse:move', handleMouseMove);
+    return () => {
+      canvas.off('mouse:down', handleMouseDown);
+      canvas.off('mouse:move', handleMouseMove);
+    }
+  }, [canvas, fabricLine, handleMouseDown, handleMouseMove]);
+
+  return <React.Fragment>{currentTool}</React.Fragment>
 }
 
-export default WallTool;
+const mapStateToProps = state => {
+  const { tool } = state;
+  return {
+    currentTool : tool,
+  };
+};
+
+export default connect(mapStateToProps)(WallTool);

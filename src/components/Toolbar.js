@@ -10,11 +10,15 @@ function Toolbar({selectTool}) {
   return (
     <form onChange={handleChange} id="toolbar">
       <label>
-        <input type="button" id="pan" onClick={() => handleChange('PAN')}/> pan
+        <input type="button" onClick={() => handleChange('PAN')}/> pan
       </label>
       <br/>
       <label>
-        <input type="button" id="edit" onClick={() => handleChange('EDIT')}/> edit
+        <input type="button" onClick={() => handleChange('WALL')}/> edit
+      </label>
+      <br/>
+      <label>
+        <input type="button" onClick={() => handleChange('SELECT')}/> select things
       </label>
     </form>
   )
