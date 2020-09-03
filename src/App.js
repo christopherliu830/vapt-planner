@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { FileSelector, ImageDisplay, Toolbar }  from './components';
+import WallTool from './tools/WallTool';
+import { connect } from 'react-redux';
+import { updateCanvasAction } from './redux/actions';
+import { fabric } from 'fabric';
 
-function App() {
+function App({updateCanvas}) {
+  const [canvas, setCanvas] = useState(new fabric.Canvas());
+
+  useEffect(() => {
+    const c = new fabric.Canvas('c', {backgroundColor: 'white'});
+    setCanvas(c);
+  }, []);
+
+  useEffect(() => {
+    if (canvas) {
+      canvas.on('update', () => {
+        console.log('canvas update');
+        updateCanvas(canvas.toObject());
+        canvas.renderAll.bind(canvas)();
+      })
+      canvas.renderAll();
+    }
+  }, [canvas, updateCanvas]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <FileSelector canvas={canvas}/>
       </header>
+      <ImageDisplay canvas={canvas}/>
+      <Toolbar/>
+      <WallTool canvas={canvas}/>
     </div>
   );
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    updateCanvas: (obj) => dispatch(updateCanvasAction(obj)),
+  };
+};
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);
