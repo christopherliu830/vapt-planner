@@ -1,20 +1,17 @@
-#main{
-  background: lightgray;
-  position: absolute;
-  top: 90px;
-  bottom: 20px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 10vh;
-  right: 0px;
+#main-canvas {
+  background:darkslategray;
+  flex: 1 1 0;
+}
+
+#main-canvas > * {
+  height: 100%;
+  width: 100%;
 }
 
 .react-transform-component {
-  width: 100%;
-  height: 100%;
+  flex: 1 1 auto;
 }
 
 .react-transform-element {
-  width: -moz-fit-content;
-}
+  display: table;
+} 

@@ -9,6 +9,7 @@ function WallTool({canvas, currentTool}) {
     console.log('wall tool init');
     canvas.selection = false;
     return () => canvas.selection = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMouseMove = useCallback(({e, target}) => {

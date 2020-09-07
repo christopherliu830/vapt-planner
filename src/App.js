@@ -39,13 +39,12 @@ function App({updateCanvas, currentTool}) {
       <header className="App-header">
         <FileSelector canvas={canvas}/>
       </header>
-      <ImageDisplay canvas={canvas}/>
-      <Toolbar/>
-<<<<<<< HEAD
-      <FurniturePalette/>
-=======
->>>>>>> 09687eaa18cc2a68713b560d771f810e5097a7f0
-      {getTool()}
+      <div className="App-main">
+        <Toolbar/>
+        <ImageDisplay canvas={canvas}/>
+        <FurniturePalette/>
+        {getTool()}
+      </div>
     </div>
   );
 }

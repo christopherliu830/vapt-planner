@@ -5,7 +5,7 @@ import './ImageDisplay.css';
 
 const ImageDisplay =  ({currentTool}) => {
   return (
-    <div id="main">
+    <div id="main-canvas">
       <TransformWrapper 
         pan={{disabled: currentTool!=='PAN'}}
         doubleClick={{disabled: true}}
