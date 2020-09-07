@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { FileSelector, ImageDisplay, Toolbar }  from './components';
+import { FileSelector, ImageDisplay, Toolbar, FurniturePalette}  from './components';
 import WallTool from './tools/WallTool';
 import { connect } from 'react-redux';
 import { updateCanvasAction } from './redux/actions';
 import { fabric } from 'fabric';
 
-function App({updateCanvas}) {
+function App({updateCanvas, currentTool}) {
   const [canvas, setCanvas] = useState(new fabric.Canvas());
 
   useEffect(() => {
-    const c = new fabric.Canvas('c', {backgroundColor: 'white'});
+    const c = new fabric.Canvas('c', {backgroundColor: 'white', });
     setCanvas(c);
   }, []);
 
@@ -25,6 +25,15 @@ function App({updateCanvas}) {
     }
   }, [canvas, updateCanvas]);
 
+  const getTool = () => {
+    switch(currentTool) {
+      case 'WALL':
+        return <WallTool canvas={canvas}/>;
+      default:
+        return <React.Fragment/>;
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -32,9 +41,17 @@ function App({updateCanvas}) {
       </header>
       <ImageDisplay canvas={canvas}/>
       <Toolbar/>
-      <WallTool canvas={canvas}/>
+      <FurniturePalette/>
+      {getTool()}
     </div>
   );
+}
+
+const mapStateToProps = state => {
+  const { tool } = state;
+  return {
+    currentTool : tool,
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {
@@ -42,4 +59,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
