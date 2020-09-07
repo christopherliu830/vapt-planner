@@ -3,7 +3,7 @@ import './App.css';
 import { FileSelector, ImageDisplay, Toolbar, FurniturePalette}  from './components';
 import WallTool from './tools/WallTool';
 import { connect } from 'react-redux';
-import { updateCanvasAction } from './redux/actions';
+import { updateCanvasAction, toolSelectedAction } from './redux/actions';
 import { fabric } from 'fabric';
 
 function App({updateCanvas, currentTool}) {
@@ -41,7 +41,10 @@ function App({updateCanvas, currentTool}) {
       </header>
       <ImageDisplay canvas={canvas}/>
       <Toolbar/>
+<<<<<<< HEAD
       <FurniturePalette/>
+=======
+>>>>>>> 09687eaa18cc2a68713b560d771f810e5097a7f0
       {getTool()}
     </div>
   );
