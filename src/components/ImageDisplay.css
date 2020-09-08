@@ -1,17 +1,14 @@
 #main-canvas {
   background:darkslategray;
   flex: 1 1 0;
-}
-
-#main-canvas > * {
-  height: 100%;
-  width: 100%;
+  min-width: 0;
 }
 
 .react-transform-component {
-  flex: 1 1 auto;
+  height: 100%;
 }
 
 .react-transform-element {
   display: table;
+  min-width: 0px;
 } 

@@ -15,12 +15,13 @@ body, html, #root {
   flex: 0 1 auto;
   min-height: 30px;
   align-items: left;
+  background: gray;
 }
 
 .App-main {
   display: inline flex;
   flex: 1 1 auto;
-  flex-wrap: wrap;
   flex-direction: row;
   align-items: stretch;
+  padding-bottom: 1em;
 }
