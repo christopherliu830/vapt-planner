@@ -20,3 +20,10 @@ export const updateCanvasAction = (canvasState) => {
     canvasState: canvasState
   }
 }
+
+export const selectFurnitureAction = (furniture) => {
+  return {
+    type: actionTypes.FURNITURE_ITEM_SELECTED,
+    furniture: furniture,
+  }
+}

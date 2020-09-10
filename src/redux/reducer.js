@@ -13,6 +13,11 @@ export default function(state = {}, action) {
         ...state,
         canvasState: action.canvasState,
       }
+    case actionTypes.FURNITURE_ITEM_SELECTED:
+      return {
+        ...state,
+        furniture: action.furniture,
+      }
     default:
       return state;
   }
