@@ -2,6 +2,7 @@
   background:darkslategray;
   flex: 1 1 0;
   min-width: 0;
+  max-height: inherit;
 }
 
 .react-transform-component {
@@ -11,4 +12,5 @@
 .react-transform-element {
   display: table;
   min-width: 0px;
+  min-height: 0;
 } 

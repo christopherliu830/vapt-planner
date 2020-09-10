@@ -1,9 +1,9 @@
 .App {
   text-align: center;
-  height: 100%;
-  flex-grow: 1;
+  height: calc(100vh - 1em);
   display : flex;
   flex-direction: column;
+  padding-bottom: 1em;
 }
 
 body, html, #root {
@@ -23,5 +23,5 @@ body, html, #root {
   flex: 1 1 auto;
   flex-direction: row;
   align-items: stretch;
-  padding-bottom: 1em;
+  overflow: hidden;
 }
