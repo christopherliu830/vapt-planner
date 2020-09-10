@@ -7,6 +7,7 @@ export default function(state = {}, action) {
       return {
         ...state,
         tool: action.tool,
+        furniture: null,
       }
     case actionTypes.CANVAS_UPDATED:
       return {
@@ -17,6 +18,7 @@ export default function(state = {}, action) {
       return {
         ...state,
         furniture: action.furniture,
+        tool: null,
       }
     default:
       return state;

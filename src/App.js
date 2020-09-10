@@ -45,6 +45,9 @@ function App({updateCanvas, currentTool}) {
         <FurniturePalette/>
         {getTool()}
       </div>
+      <footer>
+        footer
+      </footer>
     </div>
   );
 }

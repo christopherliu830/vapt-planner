@@ -5,7 +5,14 @@ import './ImageDisplay.css';
 
 const ImageDisplay =  ({tool, furniture}) => {
   const [pos, setXY] = useState({x: -1, y: -1});
-  const handleMouseMove = e => setXY({x: e.clientX, y: e.clientY}); 
+
+  const handleMouseMove = e => {
+    const ghost = document.querySelector('.ghost');
+    if (!ghost || !furniture) return;
+    ghost.style.left = `${e.clientX}px`;
+    ghost.style.top = `${e.clientY}px`;
+  }
+
   return (
     <div id="main-canvas" onMouseMove={handleMouseMove}>
       <TransformWrapper 
@@ -15,8 +22,8 @@ const ImageDisplay =  ({tool, furniture}) => {
         <TransformComponent>
           <canvas id="c"/>
         </TransformComponent>
+        {furniture && <img className="ghost" src={furniture.img}/>}
       </TransformWrapper>
-      {furniture && <img className="ghost" style={{transform: `translate(${pos.x}px, ${pos.y}px)`}} src={furniture.img}/>}
     </div>
   );
 }

@@ -1,9 +1,9 @@
 .App {
   text-align: center;
-  height: calc(100vh - 1em);
+  height: calc(100vh);
   display : flex;
   flex-direction: column;
-  padding-bottom: 1em;
+  background: white;
 }
 
 body, html, #root {
@@ -11,11 +11,17 @@ body, html, #root {
   margin: 0;
 }
 
-.App-header {
+header {
   flex: 0 1 auto;
   min-height: 30px;
   align-items: left;
   background: gray;
+}
+
+footer {
+  flex: 0 1 auto;
+  background: gray;
+  z-index: 1;
 }
 
 .App-main {
