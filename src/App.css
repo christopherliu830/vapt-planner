@@ -19,7 +19,7 @@ body, html, #root {
 }
 
 .App-main {
-  display: inline flex;
+  display: inline-flex;
   flex: 1 1 auto;
   flex-direction: row;
   align-items: stretch;
