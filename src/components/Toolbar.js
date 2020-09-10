@@ -1,26 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toolSelectedAction } from '../redux/actions';
-import './Toolbar.css';
+import './FurniturePalette.css';
+import PaletteItem from './PaletteItem';
 
-function Toolbar({selectTool}) {
-  const handleChange = tool => {
-    selectTool(tool);
-  }
+function Toolbar({tool, selectTool}) {
+  const ids = ['PAN', 'WALL', 'SELECT'];
+  const tools = ids.map(id => {
+    return {
+      name: id,
+    }
+  })
+
   return (
-    <form onChange={handleChange} id="toolbar">
-      <label>
-        <input type="button" onClick={() => handleChange('PAN')}/> pan
-      </label>
-      <br/>
-      <label>
-        <input type="button" onClick={() => handleChange('WALL')}/> edit
-      </label>
-      <br/>
-      <label>
-        <input type="button" onClick={() => handleChange('SELECT')}/> select things
-      </label>
-    </form>
+    <div className="palette">
+      { ids.map(t => {
+          return <PaletteItem
+            highlighted={tool===t}
+            onClick={() => selectTool(t)}
+            text={t}
+          />
+        })
+      }
+    </div>
   )
 }
 
@@ -30,4 +32,11 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Toolbar);
+const mapStateToProps = state => {
+  const { tool } = state;
+  return {
+    tool: tool,
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);

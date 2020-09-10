@@ -52,7 +52,7 @@ function WallTool({canvas, currentTool}) {
     }
   }, [canvas, fabricLine, handleMouseDown, handleMouseMove]);
 
-  return <React.Fragment>{currentTool}</React.Fragment>
+  return <React.Fragment/>
 }
 
 const mapStateToProps = state => {

@@ -9,8 +9,8 @@ const ImageDisplay =  ({tool, furniture}) => {
   const handleMouseMove = e => {
     const ghost = document.querySelector('.ghost');
     if (!ghost || !furniture) return;
-    ghost.style.left = `${e.clientX}px`;
-    ghost.style.top = `${e.clientY}px`;
+    ghost.style.left = `${e.clientX - furniture.img.width/2}px`;
+    ghost.style.top = `${e.clientY - furniture.img.height/2}px`;
   }
 
   return (
@@ -22,7 +22,7 @@ const ImageDisplay =  ({tool, furniture}) => {
         <TransformComponent>
           <canvas id="c"/>
         </TransformComponent>
-        {furniture && <img className="ghost" src={furniture.img}/>}
+        {furniture && <img className="ghost" src={furniture.src}/>}
       </TransformWrapper>
     </div>
   );
