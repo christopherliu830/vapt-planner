@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import './ImageDisplay.css';
 
-const ImageDisplay =  ({currentTool}) => {
+const ImageDisplay =  ({tool, furniture}) => {
+  const [pos, setXY] = useState({x: -1, y: -1});
+  const handleMouseMove = e => setXY({x: e.clientX, y: e.clientY}); 
   return (
-    <div id="main-canvas">
+    <div id="main-canvas" onMouseMove={handleMouseMove}>
       <TransformWrapper 
-        pan={{disabled: currentTool!=='PAN'}}
+        pan={{disabled: tool!=='PAN'}}
         doubleClick={{disabled: true}}
       >
         <TransformComponent>
           <canvas id="c"/>
         </TransformComponent>
       </TransformWrapper>
+      {furniture && <img className="ghost" style={{transform: `translate(${pos.x}px, ${pos.y}px)`}} src={furniture.img}/>}
     </div>
   );
 }
 
 const mapStateToProps = state => {
-  const {tool, canvasState} = state;
+  const {tool, furniture} = state;
   return {
-    currentTool: tool,
-    canvasState: canvasState
+    tool: tool,
+    furniture: furniture,
   };
 };
 

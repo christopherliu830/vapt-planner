@@ -15,3 +15,9 @@
   min-width: 0;
   min-height: 0;
 } 
+
+.ghost {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
