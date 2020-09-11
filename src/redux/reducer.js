@@ -18,7 +18,7 @@ export default function(state = {}, action) {
       return {
         ...state,
         furniture: action.furniture,
-        tool: null,
+        tool: 'FURNITURE',
       }
     default:
       return state;

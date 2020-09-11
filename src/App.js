@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { FileSelector, ImageDisplay, Toolbar, FurniturePalette}  from './components';
 import WallTool from './tools/WallTool';
+import FurnitureTool from './tools/FurnitureTool';
 import { connect } from 'react-redux';
 import { updateCanvasAction, toolSelectedAction } from './redux/actions';
 import { fabric } from 'fabric';
@@ -10,7 +11,7 @@ function App({updateCanvas, currentTool}) {
   const [canvas, setCanvas] = useState(new fabric.Canvas());
 
   useEffect(() => {
-    const c = new fabric.Canvas('c', {backgroundColor: 'white', });
+    const c = new fabric.Canvas('c', {backgroundColor: 'white', selection: false});
     setCanvas(c);
   }, []);
 
@@ -29,6 +30,8 @@ function App({updateCanvas, currentTool}) {
     switch(currentTool) {
       case 'WALL':
         return <WallTool canvas={canvas}/>;
+      case 'FURNITURE':
+        return <FurnitureTool canvas={canvas}/>;
       default:
         return <React.Fragment/>;
     }

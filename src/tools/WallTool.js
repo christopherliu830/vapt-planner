@@ -2,16 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { fabric } from 'fabric';
 
-function WallTool({canvas, currentTool}) {
-  const [fabricLine, SetLine] = useState(0);
-
-  useEffect(() => {
-    console.log('wall tool init');
-    canvas.selection = false;
-    return () => canvas.selection = true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+function WallTool({canvas}) {
+  const [ fabricLine, SetLine ] = useState();
   const handleMouseMove = useCallback(({e, target}) => {
     if (fabricLine) {
       const pointer = canvas.getPointer(e);
@@ -21,10 +13,8 @@ function WallTool({canvas, currentTool}) {
   }, [canvas, fabricLine]);
 
   const handleMouseDown = useCallback(({e, target}) => {
-    if (target) {
-      console.log('I\'m clicking');
-      return;
-    }
+    console.log(canvas.selection);
+    if (target) return; 
     else if (fabricLine) {
       console.log(fabricLine);
       SetLine(null);
