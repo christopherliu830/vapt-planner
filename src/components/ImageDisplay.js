@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { resizeAction } from '../redux/actions';
 import './ImageDisplay.css';
 
-const ImageDisplay =  ({tool, furniture}) => {
+const ImageDisplay =  ({tool, furniture, resize}) => {
   const [pos, setXY] = useState({x: -1, y: -1});
 
   const handleMouseMove = e => {
@@ -18,6 +19,7 @@ const ImageDisplay =  ({tool, furniture}) => {
       <TransformWrapper 
         pan={{disabled: tool!=='PAN'}}
         doubleClick={{disabled: true}}
+        onZoomChange={e => {console.log(e.scale); resize(e.scale)}}
       >
         <TransformComponent>
           <canvas id="c"/>
@@ -28,6 +30,12 @@ const ImageDisplay =  ({tool, furniture}) => {
   );
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    resize: scale => dispatch(resizeAction(scale)),
+  }
+}
+
 const mapStateToProps = state => {
   const {tool, furniture} = state;
   return {
@@ -36,4 +44,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(ImageDisplay);
+export default connect(mapStateToProps, mapDispatchToProps)(ImageDisplay);

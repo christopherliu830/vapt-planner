@@ -20,6 +20,12 @@ export default function(state = {}, action) {
         furniture: action.furniture,
         tool: 'FURNITURE',
       }
+    case actionTypes.RESIZE:
+      console.log(action);
+      return {
+        ...state,
+        scale: action.newScale,
+      }
     default:
       return state;
   }

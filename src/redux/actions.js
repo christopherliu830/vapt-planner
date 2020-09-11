@@ -27,3 +27,10 @@ export const selectFurnitureAction = (furniture) => {
     furniture: furniture,
   }
 }
+
+export const resizeAction = scale => {
+  return {
+    type: actionTypes.RESIZE,
+    newScale: scale,
+  }
+}

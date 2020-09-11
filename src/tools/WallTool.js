@@ -45,11 +45,4 @@ function WallTool({canvas}) {
   return <React.Fragment/>
 }
 
-const mapStateToProps = state => {
-  const { tool } = state;
-  return {
-    currentTool : tool,
-  };
-};
-
-export default connect(mapStateToProps)(WallTool);
+export default WallTool;
