@@ -3,3 +3,18 @@
   margin: 0;
   text-align: center;
 }
+
+.fixed-left, .fixed-right {
+  flex: 0 0 200px;
+  height: 100%;
+}
+
+.footer {
+  flex: 0 0 60px;
+  line-height: 60px;
+  background-color: #f5f5f5;
+}
+
+.main {
+  min-width: 0;
+}
