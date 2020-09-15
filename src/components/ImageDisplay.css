@@ -1,9 +1,10 @@
 #main-canvas {
   background:darkslategray;
-  flex: 1 1 0;
+  /* flex: 1 1 0;
   min-width: 0;
   max-height: inherit;
-  text-align: left;
+  text-align: left; */
+  height: 100%;
 }
 
 .react-transform-component {

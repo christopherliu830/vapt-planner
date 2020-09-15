@@ -39,14 +39,24 @@ function App({updateCanvas, currentTool}) {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <FileSelector canvas={canvas}/>
       </header>
-      <div className="App-main">
-        <Toolbar/>
-        <ImageDisplay canvas={canvas}/>
-        <FurniturePalette/>
-        {getTool()}
+      <div className="container-fluid" style={{overflow:"hidden"}}>
+        <div className="row">
+          <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <h3>Tools</h3>
+            <Toolbar/>
+          </div>
+          <div class="col-md-6 col-lg-8 ml-sm-auto px-md-4" role="main">
+            <ImageDisplay canvas={canvas}/>
+          </div>
+          <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <h3>Furniture</h3>
+            <FurniturePalette/>
+          </div>
+          {getTool()}
+        </div>
       </div>
       <footer>
         footer
