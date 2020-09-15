@@ -38,28 +38,30 @@ function App({updateCanvas, currentTool}) {
   }
 
   return (
-    <div className="App">
+    <div className="App d-flex flex-column h-100">
       <header className="App-header navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <FileSelector canvas={canvas}/>
+        Select: <FileSelector canvas={canvas}/>
       </header>
-      <div className="container-fluid" style={{overflow:"hidden"}}>
-        <div className="row">
-          <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div className="container-fluid pb-0 h-100" style={{overflow:"hidden"}}>
+        <div className="row h-100">
+          <div class="palette col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <h3>Tools</h3>
             <Toolbar/>
           </div>
-          <div class="col-md-6 col-lg-8 ml-sm-auto px-md-4" role="main">
+          <div class="col-md-6 col-lg-8 px-0" role="main">
             <ImageDisplay canvas={canvas}/>
           </div>
-          <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+          <div class="palette col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <h3>Furniture</h3>
             <FurniturePalette/>
           </div>
           {getTool()}
         </div>
       </div>
-      <footer>
-        footer
+      <footer className="footer my-0 py-0">
+        <div className="container">
+          footer
+        </div>
       </footer>
     </div>
   );
