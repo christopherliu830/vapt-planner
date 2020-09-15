@@ -21,7 +21,6 @@ export default function(state = {}, action) {
         tool: 'FURNITURE',
       }
     case actionTypes.RESIZE:
-      console.log(action);
       return {
         ...state,
         scale: action.newScale,

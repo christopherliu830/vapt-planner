@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileSelector, ImageDisplay, Toolbar, FurniturePalette}  from './components';
+import { FileSelector, ImageDisplay, Toolbar, FurniturePalette, ScaleUpdater}  from './components';
 import WallTool from './tools/WallTool';
 import FurnitureTool from './tools/FurnitureTool';
 import { connect } from 'react-redux';
@@ -41,8 +41,9 @@ function App({updateCanvas, currentTool}) {
     <div className="App d-flex flex-column h-100">
       <header className="App-header navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow-r">
         Select: <FileSelector canvas={canvas}/>
+        Scale: <ScaleUpdater canvas={canvas}/>
       </header>
-      <div className="container-fluid p-0 h-100">
+      <div className="container-fluid mid p-0">
         <div className="row h-100 w-100 d-flex p-0 m-0">
           {/* <div class="palette col-lg-1 d-md-block bg-light sidebar shadow"> */}
           <div class="palette fixed-left shadow">

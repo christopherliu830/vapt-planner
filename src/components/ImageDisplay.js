@@ -4,14 +4,27 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { resizeAction } from '../redux/actions';
 import './ImageDisplay.css';
 
-const ImageDisplay =  ({tool, furniture, resize}) => {
-  const [pos, setXY] = useState({x: -1, y: -1});
+const ImageDisplay =  ({tool, furniture, scale}) => {
+  const [zoom, setZoom] = useState(1);
 
   const handleMouseMove = e => {
+    console.log(zoom);
     const ghost = document.querySelector('.ghost');
     if (!ghost || !furniture) return;
     ghost.style.left = `${e.clientX - furniture.img.width/2}px`;
     ghost.style.top = `${e.clientY - furniture.img.height/2}px`;
+    ghost.style.transform = `scale(${scale*zoom},${scale*zoom})`
+  }
+
+  const handleScale = e => {
+    setZoom(e.scale);
+    handleMouseMove(e);
+    // const zoom = e.scale;
+    // const ghost = document.querySelector('.ghost');
+    // if (!ghost || !furniture) return;
+    // ghost.style.left = `${e.clientX - furniture.img.width/2}px`;
+    // ghost.style.top = `${e.clientY - furniture.img.height/2}px`;
+    // ghost.style.transform = `scale(${scale*zoom},${scale*zoom})`
   }
 
   return (
@@ -19,7 +32,7 @@ const ImageDisplay =  ({tool, furniture, resize}) => {
       <TransformWrapper 
         pan={{disabled: tool!=='PAN'}}
         doubleClick={{disabled: true}}
-        onZoomChange={e => {console.log(e.scale); resize(e.scale)}}
+        onZoomChange={handleScale}
       >
         <TransformComponent>
           <canvas id="c"/>
@@ -30,18 +43,13 @@ const ImageDisplay =  ({tool, furniture, resize}) => {
   );
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    resize: scale => dispatch(resizeAction(scale)),
-  }
-}
-
 const mapStateToProps = state => {
-  const {tool, furniture} = state;
+  const {tool, furniture, scale} = state;
   return {
     tool: tool,
     furniture: furniture,
+    scale: scale,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageDisplay);
+export default connect(mapStateToProps)(ImageDisplay);
