@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 const initialState = {
   tool: 'PAN',
+  scale: 1,
 };
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

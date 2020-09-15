@@ -19,12 +19,6 @@ const ImageDisplay =  ({tool, furniture, scale}) => {
   const handleScale = e => {
     setZoom(e.scale);
     handleMouseMove(e);
-    // const zoom = e.scale;
-    // const ghost = document.querySelector('.ghost');
-    // if (!ghost || !furniture) return;
-    // ghost.style.left = `${e.clientX - furniture.img.width/2}px`;
-    // ghost.style.top = `${e.clientY - furniture.img.height/2}px`;
-    // ghost.style.transform = `scale(${scale*zoom},${scale*zoom})`
   }
 
   return (
