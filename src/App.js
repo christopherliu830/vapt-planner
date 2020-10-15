@@ -44,23 +44,20 @@ function App({updateCanvas, currentTool}) {
       </header>
       <div className="container-fluid main p-0">
         <div className="row h-100 w-100 d-flex flex-nowrap p-0 m-0">
-          <div class="palette fixed-left shadow">
+          <div className="palette fixed-left shadow">
             <h3>Tools</h3>
             <Toolbar/>
           </div>
-          <div class="col main-canvas align-self-stretch px-0" role="main">
+          <div className="col main-canvas align-self-stretch px-0" role="main">
             <ImageDisplay canvas={canvas}/>
           </div>
-          <div class="palette fixed-right p-0 m-0 shadow">
-            <h3>Furniture</h3>
-            <FurniturePalette/>
-          </div>
+          <FurniturePalette/>
           {getTool()}
         </div>
       </div>
       <footer className="footer my-0 py-0 shadow">
         <div className="container">
-          <span class="text-muted">VirtualAPT</span>
+          <span className="text-muted">VirtualAPT</span>
         </div>
       </footer>
     </div>
