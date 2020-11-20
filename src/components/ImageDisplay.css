@@ -1,5 +1,5 @@
 #main-canvas {
-  background:darkslategray;
+  background: darkslategray;
   max-height: 100vh;
   height: 100%;
 }
@@ -18,4 +18,13 @@
   position: fixed;
   left: -9999px;
   top: -9999px;
+}
+
+.furniture-tooltip {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: white;
+  left: 50%;
+  height: 50%;
 }

@@ -31,7 +31,7 @@ const ImageDisplay =  ({tool, furniture, scale}) => {
         <TransformComponent>
           <canvas id="c"/>
         </TransformComponent>
-        {furniture && <img className="ghost" src={furniture.src}/>}
+        {furniture && <img className="ghost" src={furniture.url}/>}
       </TransformWrapper>
     </div>
   );

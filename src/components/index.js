@@ -3,6 +3,7 @@ import FileSelector from './FileSelector';
 import Toolbar from './Toolbar';
 import FurniturePalette from './FurniturePalette';
 import ScaleUpdater from './ScaleUpdater';
+import ExportButton from './ExportButton';
 
 export {
   ImageDisplay, 
@@ -10,4 +11,5 @@ export {
   Toolbar,
   FurniturePalette,
   ScaleUpdater,
+  ExportButton,
 };

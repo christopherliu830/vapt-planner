@@ -29,9 +29,21 @@
   flex: 1 1 auto;
   max-height: calc(100vh - 90px);
   min-width: 0;
+  display: flex;
 }
 
 .main-canvas {
   min-width: 0;
   overflow: hidden;
+}
+
+.sidebar {
+  padding-left: 30px;
+  position: fixed;
+  height: 100%;
+  right: 0;
+  overflow: hidden;
+  background: white;
+  max-width: 30px;
+  transition: max-width 0.25s;
 }
